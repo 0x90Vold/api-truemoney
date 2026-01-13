@@ -1,197 +1,80 @@
-# 🎉 TrueMoney Voucher API (Free to Use)
+# 🧧 TrueMoney Voucher API
 
-API สำหรับ **ตรวจสอบ (Verify)** และ **กดรับ (Redeem)** TrueMoney Gift Voucher  
-รองรับ 3 โหมดการใช้งาน:
+> **Api รับซอง TrueMoney **  
+> ใช้งานง่าย รวดเร็ว ปลอดภัย ฟรี 100%
 
-1. **Redeem** → กดรับเงินเข้ากระเป๋าเลย  
-2. **Verify** → ตรวจสอบว่าวอเชอร์ใช้ได้หรือไม่, มูลค่าเท่าไร, เหลือหรือหมด  
-3. **Flow** → ทำ Verify ก่อน แล้วกด Redeem ต่ออัตโนมัติ  
+🌐 **Live Demo:** [https://twal.vibewithlukkid.xyz/](https://twal.vibewithlukkid.xyz/)
 
-**แจกให้ใช้ฟรี** ✅  
-เรียกผ่าน HTTP (GET/POST) ได้ทั้งจากเว็บ, เกม, หรือสคริปต์  
+![Verify Engine](https://img.shields.io/badge/Verify-Engine-green?style=flat-square) ![Uptime](https://img.shields.io/badge/Uptime-99.9%25-success?style=flat-square) ![Developer](https://img.shields.io/badge/Developed_by-Lukkid-orange?style=flat-square)
 
 ---
 
-## 📌 Endpoints
+## 📖 วิธีใช้งาน (Usage)
 
+สามารถเรียกใช้งาน API ได้ง่ายๆ ผ่าน **GET Request**:
+
+### 1. Endpoint
+
+```http
+GET /api/flow
 ```
-GET/POST /redeem?voucher=<VOUCHER_ID_OR_LINK>&mobile=<MOBILE>
-GET/POST /verify?voucher=<VOUCHER_ID_OR_LINK>&mobile=<MOBILE>
-GET/POST /flow  ?voucher=<VOUCHER_ID_OR_LINK>&mobile=<MOBILE>
-```
 
-- `voucher` → โค้ดวอเชอร์ หรือทั้งลิงก์ เช่น `https://gift.truemoney.com/campaign/?v=XXXXXXXX`  
-- `mobile`  → เบอร์ TrueMoney Wallet ที่จะใช้รับเงิน  
+### 2. Parameters (พารามิเตอร์)
 
----
+| Parameter | Type   | Required | Description |
+|-----------|--------|----------|-------------|
+| `voucher` | String | ✅ Yes    | ลิงก์ซองของขวัญ (เช่น `https://gift.truemoney.com/...` หรือรหัสซอง) |
+| `mobile`  | String | ✅ Yes    | เบอร์โทรศัพท์ที่จะรับเงิน (10 หลัก) |
 
-## 🧪 วิธีใช้งาน (Examples)
+### 3. ตัวอย่างการเรียกใช้ (Example)
 
-### 🔹 Redeem (กดรับเงิน)
-
-#### Curl
+**CURL:**
 ```bash
-curl -s "https://api.kiddy.wtf/redeem?voucher=VOUCHER_ID&mobile=0812345678"
+curl -X GET "https://twal.vibewithlukkid.xyz/api/flow?voucher={LINK_CODE}&mobile=0812345678"
 ```
 
-#### JavaScript
-```js
-fetch("https://api.kiddy.wtf/redeem?voucher=VOUCHER_ID&mobile=0812345678")
-  .then(r => r.json())
-  .then(d => console.log("Redeem:", d))
-  .catch(console.error);
+**JavaScript (Fetch):**
+```javascript
+const response = await fetch('https://twal.vibewithlukkid.xyz/api/flow?voucher=7iP...&mobile=0812345678');
+const data = await response.json();
+console.log(data);
 ```
 
-#### PHP
-```php
-<?php
-$url = "https://api.kiddy.wtf/redeem?voucher=VOUCHER_ID&mobile=0812345678";
-$ch  = curl_init($url);
-curl_setopt_array($ch, [ CURLOPT_RETURNTRANSFER => true ]);
-$res = curl_exec($ch);
-curl_close($ch);
-print_r(json_decode($res, true));
-```
-
-#### Python
-```python
-import requests
-
-url = "https://api.kiddy.wtf/redeem"
-params = {"voucher": "VOUCHER_ID", "mobile": "0812345678"}
-res = requests.get(url, params=params)
-print("Redeem:", res.json())
-```
-
----
-
-### 🔹 Verify (ตรวจสอบวอเชอร์)
-
-#### Curl
-```bash
-curl -s "https://api.kiddy.wtf/verify?voucher=VOUCHER_ID&mobile=0812345678"
-```
-
-#### JavaScript
-```js
-fetch("https://api.kiddy.wtf/verify?voucher=VOUCHER_ID&mobile=0812345678")
-  .then(r => r.json())
-  .then(d => console.log("Verify:", d))
-  .catch(console.error);
-```
-
-#### PHP
-```php
-<?php
-$url = "https://api.kiddy.wtf/verify?voucher=VOUCHER_ID&mobile=0812345678";
-$ch  = curl_init($url);
-curl_setopt_array($ch, [ CURLOPT_RETURNTRANSFER => true ]);
-$res = curl_exec($ch);
-curl_close($ch);
-print_r(json_decode($res, true));
-```
-
-#### Python
-```python
-import requests
-
-url = "https://api.kiddy.wtf/verify"
-params = {"voucher": "VOUCHER_ID", "mobile": "0812345678"}
-res = requests.get(url, params=params)
-print("Verify:", res.json())
-```
-
----
-
-### 🔹 Flow (Verify → Redeem)
-
-#### Curl
-```bash
-curl -s "https://api.kiddy.wtf/flow?voucher=VOUCHER_ID&mobile=0812345678"
-```
-
-#### JavaScript
-```js
-fetch("https://api.kiddy.wtf/flow?voucher=VOUCHER_ID&mobile=0812345678")
-  .then(r => r.json())
-  .then(d => console.log("Flow:", d))
-  .catch(console.error);
-```
-
-#### PHP
-```php
-<?php
-$url = "https://api.kiddy.wtf/flow?voucher=VOUCHER_ID&mobile=0812345678";
-$ch  = curl_init($url);
-curl_setopt_array($ch, [ CURLOPT_RETURNTRANSFER => true ]);
-$res = curl_exec($ch);
-curl_close($ch);
-print_r(json_decode($res, true));
-```
-
-#### Python
-```python
-import requests
-
-url = "https://api.kiddy.wtf/flow"
-params = {"voucher": "VOUCHER_ID", "mobile": "0812345678"}
-res = requests.get(url, params=params)
-print("Flow:", res.json())
-```
-
----
-
-## 📤 ตัวอย่าง Response (Redeem สำเร็จ)
+### 4. ตัวอย่าง Response (JSON)
 
 ```json
 {
-  "redeemResponse": {
-    "status": {
-      "message": "success",
-      "code": "SUCCESS"
+{
+  "status": {
+    "code": "SUCCESS",
+    "message": "success"
+  },
+  "data": {
+    "my_ticket": null,
+    "owner_profile": {
+      "full_name": "สมชาย ***"
     },
-    "data": {
-      "voucher": {
-        "voucher_id": "429518470949487422",
-        "amount_baht": "10.00",
-        "redeemed_amount_baht": "10.00",
-        "member": 1,
-        "status": "active",
-        "link": "0199489266a279c199b4f5822ca4620f35h",
-        "detail": "",
-        "expire_date": 1757945578215,
-        "type": "R",
-        "redeemed": 1,
-        "available": 0
-      },
-      "owner_profile": {
-        "full_name": "สมชาย ผู้ส่ง"
-      },
-      "redeemer_profile": {
-        "mobile_number": "093xxxxxxx"
-      },
-      "my_ticket": {
-        "mobile": "093xxxxxxx",
-        "update_date": 1757859242273,
-        "amount_baht": "10.00",
-        "full_name": "สมหญิง ผู้รับ",
-        "profile_pic": null
-      },
-      "tickets": [
-        {
-          "mobile": "093-xxx-1882",
-          "update_date": 1757859242273,
-          "amount_baht": "10.00",
-          "full_name": "สมหญิง ผู้รับ",
-          "profile_pic": null
-        }
-      ]
+    "redeemer_profile": null,
+    "tickets": [],
+    "voucher": {
+      "amount_baht": "100.00",
+      "available": 1,
+      "detail": "",
+      "expire_date": 1767225600000,
+      "link": "a1b2c3d4e5f6g7h8i9j0...",
+      "member": 5,
+      "redeemed": 2,
+      "redeemed_amount_baht": "40.00",
+      "status": "active",
+      "type": "F",
+      "voucher_id": "12345678901234567"
     }
   }
+}
 }
 ```
 
 ---
-
-## 👤 Developer
-Kiddy
+<p align="center">
+  © 2026 Developed by <strong>Lukkid</strong> • 100% Free
+</p>
