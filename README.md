@@ -1,6 +1,6 @@
 # 🧧 TrueMoney Voucher API
 
-> **Api รับซอง TrueMoney **  
+> **Api รับซอง TrueMoney**  
 > ใช้งานง่าย รวดเร็ว ปลอดภัย ฟรี 100%
 
 🌐 **Live Demo:** [https://twal.vibewithlukkid.xyz/](https://twal.vibewithlukkid.xyz/)
@@ -30,12 +30,12 @@ GET /api/flow
 
 **CURL:**
 ```bash
-curl -X GET "https://twal.vibewithlukkid.xyz/api/flow?voucher={LINK_CODE}&mobile=0812345678"
+curl -X GET "https://twal.vibewithlukkid.xyz/api/flow?voucher={LINK_CODE}&mobile={phone}"
 ```
 
 **JavaScript (Fetch):**
 ```javascript
-const response = await fetch('https://twal.vibewithlukkid.xyz/api/flow?voucher=7iP...&mobile=0812345678');
+const response = await fetch('https://twal.vibewithlukkid.xyz/api/flow?voucher=7iP...&mobile={phone}');
 const data = await response.json();
 console.log(data);
 ```
@@ -43,7 +43,6 @@ console.log(data);
 ### 4. ตัวอย่าง Response (JSON)
 
 ```json
-{
 {
   "status": {
     "code": "SUCCESS",
@@ -70,7 +69,6 @@ console.log(data);
       "voucher_id": "12345678901234567"
     }
   }
-}
 }
 ```
 
