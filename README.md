@@ -3,7 +3,7 @@
 > **Api รับซอง TrueMoney**  
 > ใช้งานง่าย รวดเร็ว ปลอดภัย ฟรี 100%
 
-🌐 **Live Demo:** [https://twal.vibewithlukkid.xyz/](https://twal.vibewithlukkid.xyz/)
+🌐 **Live Demo:** [https://api.vibewithlukkid.xyz/](https://api.vibewithlukkid.xyz/)
 
 ![Verify Engine](https://img.shields.io/badge/Verify-Engine-green?style=flat-square) ![Uptime](https://img.shields.io/badge/Uptime-99.9%25-success?style=flat-square) ![Developer](https://img.shields.io/badge/Developed_by-Lukkid-orange?style=flat-square)
 
@@ -30,12 +30,12 @@ GET /api/flow
 
 **CURL:**
 ```bash
-curl -X GET "https://twal.vibewithlukkid.xyz/api/flow?voucher={LINK_CODE}&mobile={phone}"
+curl -X GET "https://api.vibewithlukkid.xyz/api/flow?voucher={LINK_CODE}&mobile={phone}"
 ```
 
 **JavaScript (Fetch):**
 ```javascript
-const response = await fetch('https://twal.vibewithlukkid.xyz/api/flow?voucher=7iP...&mobile={phone}');
+const response = await fetch('https://api.vibewithlukkid.xyz/api/flow?voucher=7iP...&mobile={phone}');
 const data = await response.json();
 console.log(data);
 ```
